@@ -1,0 +1,67 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Environment
+.env
+*.env.*
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+*.bak
+*.swp
+*.tmp
+*.out
+*.err
+*.pid
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# ML models
+*.model
+*.pickle
+*.h5
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Data files (be selective — only ignore if not needed in repo)
+*.db
+*.sqlite3
+chroma_db/
+
+# Archives
+*.tar.gz
+*.zip
