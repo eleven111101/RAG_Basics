@@ -1,0 +1,352 @@
+[
+    {
+        "sheet_name": "FEB シナリオ",
+        "scenario_id": "FEB-001",
+        "scenario_title_jp": "乾燥路面・静止車両への接近",
+        "parameters": {
+            "自車速度": "60 km/h",
+            "路面状態": "乾燥",
+            "前方障害物": "静止車両",
+            "初期車間距離": "40 m",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "サイドレーダー": "OFF",
+            "経度": "139.6917",
+            "緯度": "35.6895",
+            "天候": "晴れ"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "60 km/h",
+            "road_condition": "乾燥",
+            "forward_obstacle": "静止車両",
+            "initial_vehicle_distance": "40 m",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "side_radar": "OFF",
+            "longitude": "139.6917",
+            "latitude": "35.6895",
+            "weather": "晴れ"
+        }
+    },
+    {
+        "sheet_name": "FEB シナリオ",
+        "scenario_id": "FEB-002",
+        "scenario_title_jp": "湿潤路面・静止車両への接近",
+        "parameters": {
+            "自車速度": "60 km/h",
+            "路面状態": "湿潤",
+            "摩擦係数 μ": "0.45",
+            "前方障害物": "静止車両",
+            "初期車間距離": "40 m",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "サイドレーダー": "OFF",
+            "天候": "雨",
+            "経度": "139.6917",
+            "緯度": "35.6895"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "60 km/h",
+            "road_condition": "湿潤",
+            "摩擦係数 μ": "0.45",
+            "forward_obstacle": "静止車両",
+            "initial_vehicle_distance": "40 m",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "side_radar": "OFF",
+            "weather": "雨",
+            "longitude": "139.6917",
+            "latitude": "35.6895"
+        }
+    },
+    {
+        "sheet_name": "FEB シナリオ",
+        "scenario_id": "FEB-003",
+        "scenario_title_jp": "ドライバーオーバーライド",
+        "parameters": {
+            "自車速度": "70 km/h",
+            "路面状態": "乾燥",
+            "FEB作動状態": "作動中",
+            "アクセル踏込量": "30%",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "サイドレーダー": "OFF",
+            "警告音": "ON",
+            "経度": "135.5023",
+            "緯度": "34.6937"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "70 km/h",
+            "road_condition": "乾燥",
+            "FEB作動状態": "作動中",
+            "アクセル踏込量": "30%",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "side_radar": "OFF",
+            "警告音": "ON",
+            "longitude": "135.5023",
+            "latitude": "34.6937"
+        }
+    },
+    {
+        "sheet_name": "DAA シナリオ",
+        "scenario_id": "DAA-001",
+        "scenario_title_jp": "PERCLOS閾値による眠気検知",
+        "parameters": {
+            "自車速度": "80 km/h",
+            "PERCLOS値": "0.38",
+            "目閉鎖継続時間": "5 秒",
+            "室内カメラ": "ON",
+            "赤外線センサー": "ON",
+            "ステアリング振動": "OFF",
+            "シート振動": "OFF",
+            "警告レベル": "レベル1",
+            "経度": "139.7671",
+            "緯度": "35.6812"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "80 km/h",
+            "perclos_value": "0.38",
+            "目閉鎖継続時間": "5 秒",
+            "cabin_camera": "ON",
+            "infrared_sensor": "ON",
+            "ステアリング振動": "OFF",
+            "シート振動": "OFF",
+            "警告レベル": "レベル1",
+            "longitude": "139.7671",
+            "latitude": "35.6812"
+        }
+    },
+    {
+        "sheet_name": "DAA シナリオ",
+        "scenario_id": "DAA-002",
+        "scenario_title_jp": "頭部うなずきによるレベル2エスカレーション",
+        "parameters": {
+            "自車速度": "80 km/h",
+            "頭部姿勢角度": "25°以上",
+            "うなずき回数": "3回",
+            "室内カメラ": "ON",
+            "シート振動": "ON",
+            "ステアリング振動": "ON",
+            "警告レベル": "レベル2",
+            "前回アラート経過": "8分以内",
+            "経度": "139.7671",
+            "緯度": "35.6812"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "80 km/h",
+            "頭部姿勢角度": "25°以上",
+            "うなずき回数": "3回",
+            "cabin_camera": "ON",
+            "シート振動": "ON",
+            "ステアリング振動": "ON",
+            "警告レベル": "レベル2",
+            "前回アラート経過": "8分以内",
+            "longitude": "139.7671",
+            "latitude": "35.6812"
+        }
+    },
+    {
+        "sheet_name": "DAA シナリオ",
+        "scenario_id": "DAA-003",
+        "scenario_title_jp": "サングラス着用時の誤検知テスト",
+        "parameters": {
+            "自車速度": "60 km/h",
+            "サングラス着用": "あり",
+            "照度": "80,000 lux",
+            "室内カメラ": "ON",
+            "赤外線センサー": "ON",
+            "PERCLOS値": "0.10",
+            "ドライバー状態": "注意状態",
+            "警告レベル": "なし（期待値）",
+            "経度": "135.5023",
+            "緯度": "34.6937"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "60 km/h",
+            "サングラス着用": "あり",
+            "照度": "80,000 lux",
+            "cabin_camera": "ON",
+            "infrared_sensor": "ON",
+            "perclos_value": "0.10",
+            "ドライバー状態": "注意状態",
+            "警告レベル": "なし（期待値）",
+            "longitude": "135.5023",
+            "latitude": "34.6937"
+        }
+    },
+    {
+        "sheet_name": "AEB シナリオ",
+        "scenario_id": "AEB-001",
+        "scenario_title_jp": "歩行者横断（市街地）",
+        "parameters": {
+            "自車速度": "40 km/h",
+            "歩行者速度": "1.2 m/s",
+            "歩行者方向": "右→左",
+            "交差角度": "90°",
+            "初期横方向距離": "15 m",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "サイドレーダー": "ON",
+            "経度": "135.5023",
+            "緯度": "34.6937"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "40 km/h",
+            "pedestrian_speed": "1.2 m/s",
+            "歩行者方向": "右→左",
+            "交差角度": "90°",
+            "初期横方向距離": "15 m",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "side_radar": "ON",
+            "longitude": "135.5023",
+            "latitude": "34.6937"
+        }
+    },
+    {
+        "sheet_name": "AEB シナリオ",
+        "scenario_id": "AEB-002",
+        "scenario_title_jp": "自転車追突防止",
+        "parameters": {
+            "自車速度": "60 km/h",
+            "自転車速度": "20 km/h",
+            "前方距離": "25 m",
+            "路面状態": "乾燥",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "LiDAR": "ON",
+            "サイドレーダー": "OFF",
+            "経度": "130.4017",
+            "緯度": "33.5902"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "60 km/h",
+            "自転車速度": "20 km/h",
+            "前方距離": "25 m",
+            "road_condition": "乾燥",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "lidar": "ON",
+            "side_radar": "OFF",
+            "longitude": "130.4017",
+            "latitude": "33.5902"
+        }
+    },
+    {
+        "sheet_name": "AEB シナリオ",
+        "scenario_id": "AEB-003",
+        "scenario_title_jp": "大雨・歩行者検知",
+        "parameters": {
+            "自車速度": "35 km/h",
+            "天候": "大雨",
+            "視程": "40 m",
+            "歩行者距離": "20 m",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "LiDAR": "ON",
+            "センサー信頼度": "低（60%）",
+            "経度": "135.5023",
+            "緯度": "34.6937"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "35 km/h",
+            "weather": "大雨",
+            "視程": "40 m",
+            "歩行者距離": "20 m",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "lidar": "ON",
+            "センサー信頼度": "低（60%）",
+            "longitude": "135.5023",
+            "latitude": "34.6937"
+        }
+    },
+    {
+        "sheet_name": "ICC シナリオ",
+        "scenario_id": "ICC-001",
+        "scenario_title_jp": "設定速度維持（前方車両なし）",
+        "parameters": {
+            "設定速度": "100 km/h",
+            "自車速度": "100 km/h",
+            "前方車両": "なし",
+            "フロントレーダー": "ON",
+            "車線維持": "ON",
+            "路面状態": "乾燥",
+            "天候": "晴れ",
+            "センサー距離": "200 m以内",
+            "経度": "136.9066",
+            "緯度": "35.1802"
+        },
+        "parameters_canonical": {
+            "target_speed": "100 km/h",
+            "ego_vehicle_speed": "100 km/h",
+            "前方車両": "なし",
+            "front_radar": "ON",
+            "車線維持": "ON",
+            "road_condition": "乾燥",
+            "weather": "晴れ",
+            "センサー距離": "200 m以内",
+            "longitude": "136.9066",
+            "latitude": "35.1802"
+        }
+    },
+    {
+        "sheet_name": "ICC シナリオ",
+        "scenario_id": "ICC-002",
+        "scenario_title_jp": "割り込み車両への対応",
+        "parameters": {
+            "自車速度": "100 km/h",
+            "割り込み車両速度": "80 km/h",
+            "割り込み距離": "15 m",
+            "設定車間時間": "2 秒",
+            "フロントレーダー": "ON",
+            "サイドレーダー": "ON",
+            "フロントカメラ": "ON",
+            "車線変更方向": "右車線→自車線",
+            "経度": "136.9066",
+            "緯度": "35.1802"
+        },
+        "parameters_canonical": {
+            "ego_vehicle_speed": "100 km/h",
+            "割り込み車両速度": "80 km/h",
+            "割り込み距離": "15 m",
+            "target_time_gap": "2 秒",
+            "front_radar": "ON",
+            "side_radar": "ON",
+            "front_camera": "ON",
+            "車線変更方向": "右車線→自車線",
+            "longitude": "136.9066",
+            "latitude": "35.1802"
+        }
+    },
+    {
+        "sheet_name": "ICC シナリオ",
+        "scenario_id": "ICC-003",
+        "scenario_title_jp": "渋滞追従（発進・停止）",
+        "parameters": {
+            "自車速度範囲": "0〜30 km/h",
+            "前方車両速度": "0〜30 km/h",
+            "停止回数": "5回",
+            "設定車間時間": "2 秒",
+            "フロントレーダー": "ON",
+            "フロントカメラ": "ON",
+            "サイドレーダー": "OFF",
+            "路面状態": "乾燥",
+            "経度": "139.6917",
+            "緯度": "35.6895"
+        },
+        "parameters_canonical": {
+            "自車速度範囲": "0〜30 km/h",
+            "前方車両速度": "0〜30 km/h",
+            "停止回数": "5回",
+            "target_time_gap": "2 秒",
+            "front_radar": "ON",
+            "front_camera": "ON",
+            "side_radar": "OFF",
+            "road_condition": "乾燥",
+            "longitude": "139.6917",
+            "latitude": "35.6895"
+        }
+    }
+]

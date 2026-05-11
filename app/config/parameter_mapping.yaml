@@ -1,0 +1,33 @@
+自車速度: ego_vehicle_speed
+
+路面状態: road_condition
+
+前方障害物: forward_obstacle
+
+初期車間距離: initial_vehicle_distance
+
+フロントレーダー: front_radar
+
+フロントカメラ: front_camera
+
+サイドレーダー: side_radar
+
+経度: longitude
+
+緯度: latitude
+
+天候: weather
+
+PERCLOS値: perclos_value
+
+室内カメラ: cabin_camera
+
+赤外線センサー: infrared_sensor
+
+歩行者速度: pedestrian_speed
+
+LiDAR: lidar
+
+設定速度: target_speed
+
+設定車間時間: target_time_gap
