@@ -40,14 +40,15 @@ translation-parser/
 │   │   ├── excel_reader.py       # Reads Excel files via openpyxl
 │   │   ├── sheet_parser.py       # Parses individual sheets
 │   │   ├── scenario_parser.py    # Extracts scenario blocks
-│   │   ├── parameter_mapper.py   # Maps parameters to schema fields
+│   │   ├── parameter_mapper.py   # Maps raw JP keys → canonical keys
 │   │   └── json_builder.py       # Assembles final JSON output
 │   │
 │   ├── models/
 │   │   └── schemas.py            # Pydantic models for validation
 │   │
 │   ├── config/
-│   │   └── parser_config.yaml    # Column mappings and sheet config
+│   │   ├── parser_config.yaml        # Column mappings and sheet config
+│   │   └── parameter_mapping.yaml    # Canonical parameter mapping table
 │   │
 │   └── utils/
 │       ├── helpers.py
@@ -79,15 +80,149 @@ The parser assumes a stable enterprise Excel structure with scenario grouping an
 
 ```json
 {
-  "sheet_name": "ICC",
-  "scenario_id": "ICC-001",
-  "scenario_title_jp": "設定速度維持",
+  "sheet_name": "FEB シナリオ",
+  "scenario_id": "FEB-001",
+  "scenario_title_jp": "乾燥路面・静止車両への接近",
   "parameters": {
-    "自車速度": "100 km/h",
+    "自車速度": "60 km/h",
     "路面状態": "乾燥"
+  },
+  "parameters_canonical": {
+    "ego_vehicle_speed": "60 km/h",
+    "road_condition": "乾燥"
   }
 }
 ```
+
+Both the raw Japanese parameters and their canonical equivalents are always preserved in output.
+
+---
+
+## Canonical Parameter Mapping Layer
+
+### Overview
+
+The Canonical Parameter Mapping Layer converts raw client-specific Japanese parameter names into standardized internal semantic keys. It acts as the **semantic normalization engine** of the pipeline — sitting between raw extraction and AI translation.
+
+> Canonical mapping is **not** translation. These are distinct layers with different purposes.
+
+| Layer               | Purpose                                    |
+|---------------------|--------------------------------------------|
+| Raw Japanese        | Original client/source data                |
+| Canonical Key       | Internal semantic representation           |
+| English Translation | Human-readable localized text *(Phase 2)*  |
+
+---
+
+### What Is a Canonical Key?
+
+A canonical key is a stable, snake_case internal identifier used consistently across the entire platform regardless of client or language.
+
+| Raw Parameter | Canonical Key       |
+|---------------|---------------------|
+| 自車速度          | `ego_vehicle_speed` |
+| 路面状態          | `road_condition`    |
+| 天候            | `weather`           |
+| 前方障害物         | `forward_obstacle`  |
+
+---
+
+### Example Flow
+
+**Raw parsed data:**
+```json
+{
+  "自車速度": "60 km/h",
+  "路面状態": "乾燥"
+}
+```
+
+**After canonical mapping:**
+```json
+{
+  "ego_vehicle_speed": "60 km/h",
+  "road_condition": "乾燥"
+}
+```
+
+**After human translation layer *(Phase 2)*:**
+```json
+{
+  "parameter_name_en": "Ego Vehicle Speed",
+  "parameter_value_en": "60 km/h"
+}
+```
+
+---
+
+### Why This Matters for AI
+
+Without canonicalization, the AI must understand Japanese, infer automotive context, and infer parameter intent — all at once. With canonical keys, the AI receives clean structured semantic information, which improves accuracy, reduces token usage, and makes prompts deterministic.
+
+---
+
+### Mapping Config
+
+Mappings are defined in `app/config/parameter_mapping.yaml`:
+
+```yaml
+自車速度: ego_vehicle_speed
+路面状態: road_condition
+天候: weather
+前方障害物: forward_obstacle
+```
+
+---
+
+### Unmapped Parameters
+
+If no canonical mapping exists for a parameter, the original Japanese key is preserved as-is in `parameters_canonical`. This helps identify new parameters, ontology gaps, and client-specific extensions.
+
+```json
+{
+  "摩擦係数 μ": "0.45"
+}
+```
+
+---
+
+### Architecture Position
+
+```
+Excel
+  ↓
+Raw Extraction
+  ↓
+Canonical Mapping        ← This layer
+  ↓
+Semantic Normalization
+  ↓
+AI Translation (Phase 2)
+  ↓
+Step Generation (Phase 2)
+```
+
+---
+
+### Enterprise Benefits
+
+- Deterministic AI prompts across all clients
+- Stable semantic contracts independent of source language
+- Reusable validation, analytics, and automation logic
+- Multilingual scalability without changing internal schemas
+- Foundation for the future **ADAS Semantic Ontology Layer**
+
+---
+
+### Future: Value Canonicalization *(Phase 2)*
+
+In addition to key normalization, values will also be standardized:
+
+| Raw Value | Canonical Value |
+|-----------|-----------------|
+| 乾燥        | `dry`           |
+| 湿潤        | `wet`           |
+| 晴れ        | `clear`         |
 
 ---
 
@@ -176,11 +311,14 @@ Example output:
 - [x] Excel Reader
 - [x] Scenario Parser
 - [x] JSON Builder
+- [x] Canonical Parameter Mapping
+- [x] Unmapped Parameter Fallback
 - [x] Validation Layer
 - [x] Logging
 
 ### 🔜 Phase 2 — AI Translation & Artifact Generation
 - [ ] Japanese → English translation via OpenAI
+- [ ] Value canonicalization (乾燥 → `dry`, 湿潤 → `wet`)
 - [ ] AI test step generation
 - [ ] Translation memory (avoid retranslating repeated terms)
 - [ ] Cost analytics (tokens, model, cost per run)
