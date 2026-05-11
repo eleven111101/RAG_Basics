@@ -44,7 +44,7 @@ def main():
     # Print JSON in terminal only
     print(
         json.dumps(
-            all_scenarios[1],
+            all_scenarios[0:2],
             indent=4,
             ensure_ascii=False
         )

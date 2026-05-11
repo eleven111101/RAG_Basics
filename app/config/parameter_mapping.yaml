@@ -1,4 +1,5 @@
 自車速度: ego_vehicle_speed
+車速: ego_vehicle_speed
 
 路面状態: road_condition
 
